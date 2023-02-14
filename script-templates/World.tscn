@@ -1,0 +1,108 @@
+[gd_scene load_steps=13 format=3 uid="uid://cx8iwikf52b2p"]
+
+[ext_resource type="Script" path="res://src/World.cs" id="1_smgwo"]
+[ext_resource type="PackedScene" uid="uid://7p3xjhgrpniw" path="res://src/Background.tscn" id="2_4ifn6"]
+[ext_resource type="PackedScene" uid="uid://bkh1twrdjpv3e" path="res://src/Player.tscn" id="2_rathe"]
+[ext_resource type="Texture2D" uid="uid://clj6sxdyatgih" path="res://src/floor.png" id="3_mgetk"]
+[ext_resource type="Texture2D" uid="uid://g10baohr53wj" path="res://src/spotlight-1.png" id="5_wrqmt"]
+[ext_resource type="Texture2D" uid="uid://dydl7nr28ovij" path="res://src/spotligh-it.png" id="6_klbef"]
+[ext_resource type="Texture2D" uid="uid://c17y3xer5p1fs" path="res://src/spotligh-it-export.png" id="6_vd6em"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ywki3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_375e7"]
+texture = ExtResource("3_mgetk")
+texture_region_size = Vector2i(32, 112)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+4:0/0 = 0
+4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_0/angular_velocity = 0.0
+5:0/0 = 0
+5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_6gccw"]
+tile_size = Vector2i(32, 112)
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_375e7")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wuf1n"]
+size = Vector2(360, 70)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ika2d"]
+blend_mode = 1
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_smgwo")
+
+[node name="Background" parent="." instance=ExtResource("2_4ifn6")]
+
+[node name="Floor1" type="TileMap" parent="."]
+material = SubResource("CanvasItemMaterial_ywki3")
+position = Vector2(115, 27)
+scale = Vector2(2, 2)
+tile_set = SubResource("TileSet_6gccw")
+format = 2
+layer_0/tile_data = PackedInt32Array(1114115, 0, 0, 196606, 1, 0, 196607, 1, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 1, 0, 131077, 1, 0, 131078, 1, 0, 131079, 1, 0, 131080, 1, 0, 131081, 1, 0, 131085, 1, 0, 131082, 1, 0, 131083, 1, 0, 131084, 1, 0)
+
+[node name="Floor1Visible" type="VisibleOnScreenNotifier2D" parent="Floor1"]
+position = Vector2(192, 276)
+scale = Vector2(25.6, 1)
+
+[node name="Floor2" type="TileMap" parent="."]
+material = SubResource("CanvasItemMaterial_ywki3")
+position = Vector2(1139, 27)
+scale = Vector2(2, 2)
+tile_set = SubResource("TileSet_6gccw")
+format = 2
+layer_0/tile_data = PackedInt32Array(1114115, 0, 0, 196606, 1, 0, 196607, 1, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 1, 0, 131077, 1, 0, 131078, 1, 0, 131079, 1, 0, 131080, 1, 0, 131081, 1, 0, 131085, 1, 0, 131082, 1, 0, 131083, 1, 0, 131084, 1, 0)
+
+[node name="Floor2Visible" type="VisibleOnScreenNotifier2D" parent="Floor2"]
+position = Vector2(192, 276)
+scale = Vector2(25.6, 1)
+
+[node name="Player" parent="." instance=ExtResource("2_rathe")]
+position = Vector2(58, 224)
+scale = Vector2(2, 2)
+
+[node name="no" type="StaticBody2D" parent="."]
+
+[node name="top" type="CollisionShape2D" parent="no"]
+position = Vector2(180, -40)
+shape = SubResource("RectangleShape2D_wuf1n")
+
+[node name="bottom" type="CollisionShape2D" parent="no"]
+position = Vector2(180, 605)
+shape = SubResource("RectangleShape2D_wuf1n")
+
+[node name="Lights" type="Node2D" parent="."]
+position = Vector2(58, 224)
+
+[node name="PointLight2D" type="PointLight2D" parent="Lights"]
+z_index = -100
+scale = Vector2(2, 2)
+blend_mode = 1
+texture = ExtResource("5_wrqmt")
+
+[node name="LightSprite1" type="Sprite2D" parent="Lights"]
+modulate = Color(1, 1, 1, 0.364706)
+material = SubResource("CanvasItemMaterial_ika2d")
+scale = Vector2(2, 2)
+texture = ExtResource("6_vd6em")
+
+[node name="LightSprite2" type="Sprite2D" parent="Lights"]
+modulate = Color(1, 0.803922, 0.462745, 0.0509804)
+material = SubResource("CanvasItemMaterial_ika2d")
+scale = Vector2(2, 2)
+texture = ExtResource("6_klbef")
