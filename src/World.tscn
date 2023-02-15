@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cx8iwikf52b2p"]
+[gd_scene load_steps=15 format=3 uid="uid://cx8iwikf52b2p"]
 
 [ext_resource type="Script" path="res://src/World.cs" id="1_smgwo"]
 [ext_resource type="PackedScene" uid="uid://7p3xjhgrpniw" path="res://src/Background.tscn" id="2_4ifn6"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c0oktleafx743" path="res://src/spotlight-blue.png" id="6_urkl6"]
 [ext_resource type="Texture2D" uid="uid://c2yoxiqmwealh" path="res://src/spotlight-lit.png" id="8_7h8cp"]
 [ext_resource type="PackedScene" uid="uid://barqjver2rliw" path="res://src/PipeSpawner.tscn" id="8_y3mvg"]
+[ext_resource type="PackedScene" uid="uid://cj3150o7mm748" path="res://src/Hud.tscn" id="9_maix2"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ywki3"]
 
@@ -101,6 +102,8 @@ modulate = Color(1, 0.803922, 0.462745, 0.0509804)
 material = SubResource("CanvasItemMaterial_ika2d")
 scale = Vector2(2, 2)
 texture = ExtResource("8_7h8cp")
+
+[node name="Hud" parent="." instance=ExtResource("9_maix2")]
 
 [node name="Button" type="Button" parent="."]
 offset_right = 360.0

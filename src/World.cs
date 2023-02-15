@@ -55,9 +55,6 @@ public partial class World : Node2D
 			}
 			StartedPlaying = true;
 		};
-		
-
-		Print(Score);
 	}
 		
 	#region Touchscreen to Inputs
