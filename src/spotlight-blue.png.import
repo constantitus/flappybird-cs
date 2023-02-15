@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c17y3xer5p1fs"
-path="res://.godot/imported/spotligh-it-export.png-8cc49d571fe029671b23bd7a4b9df025.ctex"
+uid="uid://c0oktleafx743"
+path="res://.godot/imported/spotlight-blue.png-641faf0d5ece089e52c9b1825408a836.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/spotligh-it-export.png"
-dest_files=["res://.godot/imported/spotligh-it-export.png-8cc49d571fe029671b23bd7a4b9df025.ctex"]
+source_file="res://src/spotlight-blue.png"
+dest_files=["res://.godot/imported/spotlight-blue.png-641faf0d5ece089e52c9b1825408a836.ctex"]
 
 [params]
 

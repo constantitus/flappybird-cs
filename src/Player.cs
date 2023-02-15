@@ -1,37 +1,35 @@
 using Godot;
+using static Godot.GD;
 using System;
 
 public partial class Player : CharacterBody2D
 {
 	#region Constants and Vars
 
-	public AnimatedSprite2D birdSprite;
-	public Sprite2D spotLight;
-	public CanvasItemMaterial spotLightMode;
-	public const float Gravity = 1800;
+	private AnimatedSprite2D _birdSprite;
 	
 	public event Action Ded;
+	public static bool DedPlayer;
 
 	#endregion
 	public override void _Ready()
 	{
-		birdSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
-		birdSprite.AnimationFinished += BirdSpriteFinished;
+		_birdSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		_birdSprite.Animation = "default";
+		_birdSprite.Play();
 
-		//spotLight = GetNode<Sprite2D>("LightSprite");
-		//spotLightMode = (CanvasItemMaterial)spotLight.Material;
-
-		//spotLightMode.BlendMode = CanvasItemMaterial.BlendModeEnum.Mul;
-		
-	}
-
-	void BirdSpriteFinished()
-	{
-		var _currentAnimation = birdSprite.Animation;
-
-		if (_currentAnimation == "default")
-			birdSprite.Pause();
+		_birdSprite.AnimationFinished += () =>
+		{
+			if (_birdSprite.Animation == "default")
+			{
+				if (!World.StartedPlaying)
+					_birdSprite.Play();
+				else
+					_birdSprite.Pause();
+			}
+		};
+		Ded += () => _birdSprite.Animation = "dead";
 	}
 
 	public void CheckCollision()
@@ -41,29 +39,29 @@ public partial class Player : CharacterBody2D
 			KinematicCollision2D collision = GetSlideCollision(i);
 			if ((collision.GetCollider() as Node).Name != "no")
 			{
+				DedPlayer = true;
 				Ded?.Invoke();
-				QueueFree();
 			}
 		}
 	}
 
-	private void _movement(double delta)
+	void _movement(double delta)
 	{
 		Vector2 velocity = Velocity;
 
-		// Add the gravity.
+		// Handle Gravity
 		if (!IsOnFloor())
-			velocity.Y += Gravity * (float)delta;
+			velocity.Y += World.Gravity * (float)delta;
 
-		// Handle Flap.
+		// Handle Flap
 		if (Input.IsActionJustPressed("Jump"))
 		{
 			velocity.Y = -600f;
-			birdSprite.Play();
-			birdSprite.SetFrameAndProgress(0, 0);
+			_birdSprite.Play();
+			_birdSprite.SetFrameAndProgress(0, 0);
 		}
 	
-
+		// Fall-speed Cap
 		if (velocity.Y > 700)
 			velocity.Y = 700;
 
@@ -71,9 +69,17 @@ public partial class Player : CharacterBody2D
 		MoveAndSlide();
 		CheckCollision();
 	}
-
+	private float _fallSpeed = 1;
+	void _dying()
+	{
+		_fallSpeed = Mathf.Lerp(_fallSpeed, 100, 0.01f);
+		Position += new Vector2 (0, _fallSpeed);
+	}
 	public override void _PhysicsProcess(double delta)
 	{ 
-		_movement(delta);
+		if (!DedPlayer)
+			{ if (World.StartedPlaying) _movement(delta); }
+		else if (!World.PlayerOffScreen)
+			_dying();
 	}
 }

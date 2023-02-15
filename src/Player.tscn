@@ -1,12 +1,25 @@
-[gd_scene load_steps=15 format=3 uid="uid://bkh1twrdjpv3e"]
+[gd_scene load_steps=19 format=3 uid="uid://bkh1twrdjpv3e"]
 
 [ext_resource type="Script" path="res://src/Player.cs" id="1_mg7s7"]
+[ext_resource type="Texture2D" uid="uid://cefxdgowtdx2q" path="res://src/dead-bird.png" id="2_1x53u"]
 [ext_resource type="Texture2D" uid="uid://kq8xkm60vhod" path="res://src/dry-bird.png" id="2_ebp1k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6amrg"]
 size = Vector2(12, 10)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ysp48"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcx51"]
+atlas = ExtResource("2_1x53u")
+region = Rect2(0, 0, 24, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3svcd"]
+atlas = ExtResource("2_1x53u")
+region = Rect2(24, 0, 24, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7x7og"]
+atlas = ExtResource("2_1x53u")
+region = Rect2(48, 0, 24, 21)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u7xaf"]
 atlas = ExtResource("2_ebp1k")
@@ -46,6 +59,20 @@ region = Rect2(160, 0, 40, 46)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_615mb"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcx51")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3svcd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7x7og")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_u7xaf")
@@ -91,6 +118,4 @@ debug_color = Color(0.745098, 0.34902, 0.776471, 0.419608)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("CanvasItemMaterial_ysp48")
 sprite_frames = SubResource("SpriteFrames_615mb")
-frame = 7
-frame_progress = 1.0
 flip_h = true

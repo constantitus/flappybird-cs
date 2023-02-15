@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3mdf6hm5b21v"]
+[gd_scene load_steps=5 format=3 uid="uid://c3mdf6hm5b21v"]
 
 [ext_resource type="Script" path="res://src/Pipes.cs" id="1_cypcu"]
 [ext_resource type="Texture2D" uid="uid://da4yr3fl4lf7u" path="res://src/pipe-o.png" id="2_ndxi4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6fgp4"]
 size = Vector2(32, 192)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0tkj0"]
+size = Vector2(16, 88)
 
 [node name="Pipes" type="Node2D"]
 scale = Vector2(2, 2)
@@ -17,22 +20,34 @@ scale = Vector2(1.6, 24.6)
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="Sprite1" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(0, -150)
+position = Vector2(0, -140)
 texture = ExtResource("2_ndxi4")
 flip_v = true
 
 [node name="Collision1" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, -150)
+position = Vector2(0, -140)
 shape = SubResource("RectangleShape2D_6fgp4")
 debug_color = Color(0.705882, 0.490196, 0, 0.419608)
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 
 [node name="Sprite2" type="Sprite2D" parent="StaticBody2D2"]
-position = Vector2(0, 150)
+position = Vector2(0, 140)
 texture = ExtResource("2_ndxi4")
 
 [node name="Collision2" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(0, 150)
+position = Vector2(0, 140)
 shape = SubResource("RectangleShape2D_6fgp4")
 debug_color = Color(0.682353, 0.501961, 0, 0.419608)
+
+[node name="ScoreArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="Collision" type="CollisionShape2D" parent="ScoreArea"]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_0tkj0")
+one_way_collision_margin = 10.6
+debug_color = Color(0.717647, 0.478431, 0, 0.419608)
+
+[connection signal="area_entered" from="ScoreArea" to="." method="_on_score_area_area_entered"]
+[connection signal="body_entered" from="ScoreArea" to="." method="_on_score_area_body_entered"]

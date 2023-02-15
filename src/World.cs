@@ -5,58 +5,89 @@ using System.Security;
 
 public partial class World : Node2D
 {
+	#region Constants and Variables
 	public const float BackgroundSpeed = 100;
-	public const float FloorSpeed = 300;
-	
+	public const float FloorSpeed = 250;
+	public const float Gravity = 1800;
+
+	public static int Score;
 	public Player Player;
 	public Node2D Lights;
-	
-	public AnimatedSprite2D bgSprite;
-	public ParallaxBackground ScrollingBg;
-	private Vector2 _bgScrollOffset;
-
 	public TileMap Floor;
-	
-	private bool _dedPlayer;
+	private AnimatedSprite2D _bgImage;
+	private ParallaxBackground _scrollingBg;
+	private Vector2 _bgScrollOffset;
+	private Timer _pipeTimer;
+	private VisibleOnScreenNotifier2D _playerVisible;
+	public static bool PlayerOffScreen;
+	public static bool StartedPlaying;
+	private event Action _startPlaying;
 
-	public PackedScene Pipes;
+	#endregion
+	
 	public override void _Ready()
 	{
-		Pipes = (PackedScene)Load("res://src/Pipes.tscn");
-		
 		Player = GetNode<Player>("Player");
-		Player.Ded += delegate
-		{
-			_dedPlayer = true;
-		};
+		_playerVisible = GetNode<VisibleOnScreenNotifier2D>("Player/PlayerVisible");
+		_playerVisible.ScreenExited += _freePlayer;
 		Lights = GetNode<Node2D>("Lights");
 
 		Floor = GetNode<TileMap>("Floor");
 		
-		var visibility = Floor.GetChild<VisibleOnScreenNotifier2D>(0);
-		visibility.ScreenExited += () =>
+		var floorVisible = Floor.GetChild<VisibleOnScreenNotifier2D>(0);
+		floorVisible.ScreenExited += () =>
 			Floor.Position += new Vector2(16 * 32, 0);
 
-		ScrollingBg = GetNode<ParallaxBackground>("Background");
+		_scrollingBg = GetNode<ParallaxBackground>("Background");
 
-		bgSprite = GetNode<AnimatedSprite2D>("Background/ParallaxLayer/Background");
-		bgSprite.Play();
+		_bgImage = GetNode<AnimatedSprite2D>("Background/ParallaxLayer/Background");
+		_bgImage.Play();
+
+		_pipeTimer = GetNode<Timer>("PipeSpawner/Timer");
+		
+		StartedPlaying = false;
+		_startPlaying += () =>
+		{
+			if (!StartedPlaying)
+			{
+				_pipeTimer.Start();
+				Input.ActionPress("Jump");
+			}
+			StartedPlaying = true;
+		};
+		
+
+		Print(Score);
 	}
-	//	x: 392
-	public void HandlePipes(double timeDelta)
+		
+	#region Touchscreen to Inputs
+	public void _on_button_button_down()
 	{
+		Input.ActionPress("Jump");
 	}
-
+	public void _on_button_button_up()
+	{
+		Input.ActionRelease("Jump");
+	}
+	#endregion
+	void _freePlayer()
+	{
+		PlayerOffScreen = true;
+		_pipeTimer.Stop();
+		Player.QueueFree();
+	}
 	public override void _Process(double timeDelta)
 	{
-		ScrollingBg.ScrollOffset = _bgScrollOffset;
-		_bgScrollOffset.X -= BackgroundSpeed * (float)timeDelta;
-
-		Floor.Position -= new Vector2( FloorSpeed * (float)timeDelta, 0);
-		
-		if (!_dedPlayer)
+		_scrollingBg.ScrollOffset = _bgScrollOffset;
+		if (!PlayerOffScreen)
 			Lights.Position = Player.Position;
+			if (!Player.DedPlayer)
+				{
+					Floor.Position -= new Vector2( FloorSpeed * (float)timeDelta, 0);
+					_bgScrollOffset.X -= BackgroundSpeed * (float)timeDelta;
+				}
+		if (Input.IsActionJustPressed("Jump"))
+			_startPlaying?.Invoke();
 
-		HandlePipes(timeDelta);
 	}
 }

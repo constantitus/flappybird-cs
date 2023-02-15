@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g10baohr53wj"
-path="res://.godot/imported/spotlight-1.png-9f43e2e7842ecb1def170808eca98a1a.ctex"
+uid="uid://dwy70jmtbwixh"
+path="res://.godot/imported/spotligh-trsp.png-51308388c85c3812549906acb4f39ecf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/spotlight-1.png"
-dest_files=["res://.godot/imported/spotlight-1.png-9f43e2e7842ecb1def170808eca98a1a.ctex"]
+source_file="res://src/spotligh-trsp.png"
+dest_files=["res://.godot/imported/spotligh-trsp.png-51308388c85c3812549906acb4f39ecf.ctex"]
 
 [params]
 
