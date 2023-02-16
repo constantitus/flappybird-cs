@@ -56,7 +56,10 @@ public partial class Player : CharacterBody2D
 		// Handle Flap
 		if (Input.IsActionJustPressed("Jump"))
 		{
-			velocity.Y = -600f;
+			if (!IsOnFloor())
+				velocity.Y = -600f;
+			else
+				velocity.Y = -900f;
 			_birdSprite.Play();
 			_birdSprite.SetFrameAndProgress(0, 0);
 		}

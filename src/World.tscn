@@ -71,7 +71,6 @@ scale = Vector2(2, 2)
 [node name="PlayerVisible" type="VisibleOnScreenNotifier2D" parent="Player"]
 
 [node name="no" type="StaticBody2D" parent="."]
-visible = false
 
 [node name="top" type="CollisionShape2D" parent="no"]
 position = Vector2(180, -40)
