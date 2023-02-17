@@ -87,7 +87,7 @@ position = Vector2(120, 224)
 [node name="PointLight2D" type="PointLight2D" parent="Lights"]
 z_index = -100
 scale = Vector2(2, 2)
-energy = 0.56
+energy = 0.55
 blend_mode = 1
 texture = ExtResource("6_urkl6")
 
