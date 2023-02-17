@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://26taaxe6v4px"]
+
+[ext_resource type="Script" path="res://src/Scenes/Hud.cs" id="1_n7o83"]
+[ext_resource type="FontFile" uid="uid://dql7s5i0r8u7a" path="res://src/moreperfectdos.ttf" id="2_6eo74"]
+[ext_resource type="Texture2D" uid="uid://rihoqv1lpjtf" path="res://src/Images/pause.png" id="3_34qcq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8htld"]
+font = ExtResource("2_6eo74")
+font_size = 80
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 0)
+
+[node name="Hud" type="CanvasLayer"]
+script = ExtResource("1_n7o83")
+
+[node name="Score" type="Label" parent="."]
+offset_right = 360.0
+offset_bottom = 120.0
+text = "0"
+label_settings = SubResource("LabelSettings_8htld")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pause" type="Button" parent="."]
+visible = false
+offset_left = 303.0
+offset_top = 1.0
+offset_right = 331.0
+offset_bottom = 29.0
+scale = Vector2(2, 2)
+focus_mode = 0
+action_mode = 0
+shortcut_feedback = false
+shortcut_in_tooltip = false
+icon = ExtResource("3_34qcq")
+flat = true
+icon_alignment = 1

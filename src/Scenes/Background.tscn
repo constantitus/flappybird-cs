@@ -1,25 +1,25 @@
-[gd_scene load_steps=8 format=3 uid="uid://7p3xjhgrpniw"]
+[gd_scene load_steps=8 format=3 uid="uid://dwx5btqlsud4v"]
 
-[ext_resource type="Texture2D" uid="uid://benwnfoyvdodf" path="res://src/bg-crystals.png" id="1_mw51a"]
+[ext_resource type="Texture2D" uid="uid://benwnfoyvdodf" path="res://src/Images/bg-crystals.png" id="1_mq4ed"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2l8o2"]
-atlas = ExtResource("1_mw51a")
+atlas = ExtResource("1_mq4ed")
 region = Rect2(0, 0, 1024, 1024)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ugfra"]
-atlas = ExtResource("1_mw51a")
+atlas = ExtResource("1_mq4ed")
 region = Rect2(1024, 0, 1024, 1024)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_424ip"]
-atlas = ExtResource("1_mw51a")
+atlas = ExtResource("1_mq4ed")
 region = Rect2(2048, 0, 1024, 1024)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g8w7v"]
-atlas = ExtResource("1_mw51a")
+atlas = ExtResource("1_mq4ed")
 region = Rect2(3072, 0, 1024, 1024)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1143d"]
-atlas = ExtResource("1_mw51a")
+atlas = ExtResource("1_mq4ed")
 region = Rect2(4096, 0, 1024, 1024)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_obhqm"]

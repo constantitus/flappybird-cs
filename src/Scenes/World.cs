@@ -5,9 +5,10 @@ using System.Security;
 
 public partial class World : Node2D
 {
-	#region Constants and Variables
-	public const float BackgroundSpeed = 100;
-	public const float FloorSpeed = 250;
+	public static float[] SpeedChart = {1, 1.2f, 1.4f, 1.6f, 1.8f, 2};
+	public static float SpeedMultiplier = 1;
+	public static float FloorSpeed = 200 * SpeedMultiplier;
+	public static float BackgroundSpeed = FloorSpeed / 2;
 	public const float Gravity = 1800;
 
 	public static int Score;
@@ -22,8 +23,6 @@ public partial class World : Node2D
 	public static bool PlayerOffScreen;
 	public static bool StartedPlaying;
 	private event Action _startPlaying;
-
-	#endregion
 	
 	public override void _Ready()
 	{
@@ -31,7 +30,6 @@ public partial class World : Node2D
 		_playerVisible = GetNode<VisibleOnScreenNotifier2D>("Player/PlayerVisible");
 		_playerVisible.ScreenExited += _freePlayer;
 		Lights = GetNode<Node2D>("Lights");
-
 		Floor = GetNode<TileMap>("Floor");
 		
 		var floorVisible = Floor.GetChild<VisibleOnScreenNotifier2D>(0);
@@ -48,16 +46,30 @@ public partial class World : Node2D
 		StartedPlaying = false;
 		_startPlaying += () =>
 		{
-			if (!StartedPlaying)
-			{
-				_pipeTimer.Start();
-				Input.ActionPress("Jump");
-			}
+			_pipeTimer.Start();
+			Input.ActionPress("Jump");
 			StartedPlaying = true;
+		};
+		Hud.PauseGame += () =>
+			_pipeTimer.Paused = true;
+		Main.ResumeGame += () =>
+			{
+				_pipeTimer.Paused = false;
+				if (Player.DedPlayer)
+				{
+					Player.DedPlayer = false;
+				}
+			};
+		Main.StartGame += () =>
+		{
+			World.Score = 0;
+			Player.Position = new Vector2 (115, 224);
+			_pipeTimer.Start();
+			StartedPlaying = false;
+			PlayerOffScreen = false;
 		};
 	}
 		
-	#region Touchscreen to Inputs
 	public void _on_button_button_down()
 	{
 		Input.ActionPress("Jump");
@@ -66,25 +78,21 @@ public partial class World : Node2D
 	{
 		Input.ActionRelease("Jump");
 	}
-	#endregion
 	void _freePlayer()
 	{
 		PlayerOffScreen = true;
 		_pipeTimer.Stop();
-		Player.QueueFree();
 	}
-	public override void _Process(double timeDelta)
+	public override void _Process(double delta)
 	{
 		_scrollingBg.ScrollOffset = _bgScrollOffset;
-		if (!PlayerOffScreen)
-			Lights.Position = Player.Position;
-			if (!Player.DedPlayer)
-				{
-					Floor.Position -= new Vector2( FloorSpeed * (float)timeDelta, 0);
-					_bgScrollOffset.X -= BackgroundSpeed * (float)timeDelta;
-				}
-		if (Input.IsActionJustPressed("Jump"))
+		Lights.Position = Player.Position;
+		if (!Player.DedPlayer && !Main.IsPaused)
+			{
+				Floor.Position -= new Vector2( FloorSpeed * (float)delta, 0);
+				_bgScrollOffset.X -= BackgroundSpeed * (float)delta;
+			}
+		if (Input.IsActionJustPressed("Jump") && !Main.IsPaused && !StartedPlaying)
 			_startPlaying?.Invoke();
-
 	}
 }

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cefxdgowtdx2q"
-path="res://.godot/imported/dead-bird.png-af33aabacef68a49422bee51b9dc41ca.ctex"
+uid="uid://ceuwhr1bap5dq"
+path="res://.godot/imported/resume.png-3e9f63304b48a8819832d1b1c2642c52.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/dead-bird.png"
-dest_files=["res://.godot/imported/dead-bird.png-af33aabacef68a49422bee51b9dc41ca.ctex"]
+source_file="res://src/Images/resume.png"
+dest_files=["res://.godot/imported/resume.png-3e9f63304b48a8819832d1b1c2642c52.ctex"]
 
 [params]
 

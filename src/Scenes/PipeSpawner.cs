@@ -8,12 +8,14 @@ public partial class PipeSpawner : Node2D
 	private Timer _timer;
 	public override void _Ready()
 	{
-		Pipes = (PackedScene)Load("res://src/Pipes.tscn");
+		Pipes = (PackedScene)Load("res://src/Scenes/Pipes.tscn");
 		_timer = GetNode<Timer>("Timer");
 		
 		_timer.Timeout += SpawnPipe;
 		
 		Randomize();
+
+
 	}
 	void SpawnPipe()
 	{
@@ -22,4 +24,9 @@ public partial class PipeSpawner : Node2D
 		(obstacle as Node2D).Position = new Vector2(200, Randi()%200);
 		
 	}
+
+    public override void _Process(double delta)
+    {
+        
+    }
 }

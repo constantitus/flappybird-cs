@@ -5,6 +5,7 @@ using Godot.NativeInterop;
 
 public partial class Pipes : Node2D
 {
+	public static event Action RefreshScore;
 	private VisibleOnScreenNotifier2D _visible;
 	private Player _player;
 	private bool _dedPlayer;
@@ -14,13 +15,20 @@ public partial class Pipes : Node2D
 		_visible = GetNode<VisibleOnScreenNotifier2D>("VisibilityNotifier");
 		_visible.ScreenExited += () =>
 			QueueFree();
+		Main.StartGame += () =>
+			RefreshScore?.Invoke();
 		_scoreArea = GetNode<Area2D>("ScoreArea");
-		_scoreArea.BodyEntered += (Node2D) => World.Score++;
+		_scoreArea.BodyEntered += (Node2D) =>
+		{
+			World.Score++;
+			RefreshScore?.Invoke();
+		};
 	}
-	public override void _Process(double timeDelta)
+	public override void _Process(double delta)
 	{
-		if (!Player.DedPlayer)
-			Position -= new Vector2(World.FloorSpeed * (float)timeDelta, 0);
-		
+		if (!Player.DedPlayer && !Main.IsPaused)
+			Position -= new Vector2(World.FloorSpeed * (float)delta, 0);
+		if (!World.StartedPlaying)
+			QueueFree();
 	}
 }

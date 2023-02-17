@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kq8xkm60vhod"
-path="res://.godot/imported/dry-bird.png-5a497cfb91e4ad484aca3f432fa4d498.ctex"
+uid="uid://c0oktleafx743"
+path="res://.godot/imported/spotlight-blue.png-9dc1ba405549b3a5bdf003e864931549.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/dry-bird.png"
-dest_files=["res://.godot/imported/dry-bird.png-5a497cfb91e4ad484aca3f432fa4d498.ctex"]
+source_file="res://src/Images/spotlight-blue.png"
+dest_files=["res://.godot/imported/spotlight-blue.png-9dc1ba405549b3a5bdf003e864931549.ctex"]
 
 [params]
 

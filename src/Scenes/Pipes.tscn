@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3mdf6hm5b21v"]
+[gd_scene load_steps=5 format=3 uid="uid://b3jhq2uc5sicv"]
 
-[ext_resource type="Script" path="res://src/Pipes.cs" id="1_cypcu"]
-[ext_resource type="Texture2D" uid="uid://da4yr3fl4lf7u" path="res://src/pipe-o.png" id="2_ndxi4"]
+[ext_resource type="Script" path="res://src/Scenes/Pipes.cs" id="1_k0mao"]
+[ext_resource type="Texture2D" uid="uid://da4yr3fl4lf7u" path="res://src/Images/pipe-o.png" id="2_j6fmh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6fgp4"]
 size = Vector2(32, 192)
@@ -11,7 +11,7 @@ size = Vector2(0.5, 88)
 
 [node name="Pipes" type="Node2D"]
 scale = Vector2(2, 2)
-script = ExtResource("1_cypcu")
+script = ExtResource("1_k0mao")
 
 [node name="VisibilityNotifier" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0, -2.07424e-05)
@@ -21,7 +21,7 @@ scale = Vector2(1.6, 24.6)
 
 [node name="Sprite1" type="Sprite2D" parent="StaticBody2D"]
 position = Vector2(0, -140)
-texture = ExtResource("2_ndxi4")
+texture = ExtResource("2_j6fmh")
 flip_v = true
 
 [node name="Collision1" type="CollisionShape2D" parent="StaticBody2D"]
@@ -33,7 +33,7 @@ debug_color = Color(0.705882, 0.490196, 0, 0.419608)
 
 [node name="Sprite2" type="Sprite2D" parent="StaticBody2D2"]
 position = Vector2(0, 140)
-texture = ExtResource("2_ndxi4")
+texture = ExtResource("2_j6fmh")
 
 [node name="Collision2" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(0, 140)

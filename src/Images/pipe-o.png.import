@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8r1i44bjbtnj"
-path="res://.godot/imported/spotlight.png-69c12cfed1194fbd780da87d24bc4a9c.ctex"
+uid="uid://da4yr3fl4lf7u"
+path="res://.godot/imported/pipe-o.png-06f54b2980e59a39ecad7cf93fd9ca86.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/spotlight.png"
-dest_files=["res://.godot/imported/spotlight.png-69c12cfed1194fbd780da87d24bc4a9c.ctex"]
+source_file="res://src/Images/pipe-o.png"
+dest_files=["res://.godot/imported/pipe-o.png-06f54b2980e59a39ecad7cf93fd9ca86.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://benwnfoyvdodf"
-path="res://.godot/imported/bg-crystals.png-83fc879a72810c26516068c63806b9ca.ctex"
+path="res://.godot/imported/bg-crystals.png-382fa926a9c046ddb9d402dd8d6c3711.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/bg-crystals.png"
-dest_files=["res://.godot/imported/bg-crystals.png-83fc879a72810c26516068c63806b9ca.ctex"]
+source_file="res://src/Images/bg-crystals.png"
+dest_files=["res://.godot/imported/bg-crystals.png-382fa926a9c046ddb9d402dd8d6c3711.ctex"]
 
 [params]
 

@@ -1,14 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://cx8iwikf52b2p"]
+[gd_scene load_steps=15 format=3 uid="uid://csib0vxrkwoyx"]
 
-[ext_resource type="Script" path="res://src/World.cs" id="1_smgwo"]
-[ext_resource type="PackedScene" uid="uid://7p3xjhgrpniw" path="res://src/Background.tscn" id="2_4ifn6"]
-[ext_resource type="PackedScene" uid="uid://bkh1twrdjpv3e" path="res://src/Player.tscn" id="2_rathe"]
-[ext_resource type="Texture2D" uid="uid://clj6sxdyatgih" path="res://src/floor.png" id="3_mgetk"]
-[ext_resource type="Texture2D" uid="uid://dwy70jmtbwixh" path="res://src/spotligh-trsp.png" id="6_8bvfs"]
-[ext_resource type="Texture2D" uid="uid://c0oktleafx743" path="res://src/spotlight-blue.png" id="6_urkl6"]
-[ext_resource type="Texture2D" uid="uid://c2yoxiqmwealh" path="res://src/spotlight-lit.png" id="8_7h8cp"]
-[ext_resource type="PackedScene" uid="uid://barqjver2rliw" path="res://src/PipeSpawner.tscn" id="8_y3mvg"]
-[ext_resource type="PackedScene" uid="uid://cj3150o7mm748" path="res://src/Hud.tscn" id="9_maix2"]
+[ext_resource type="Script" path="res://src/Scenes/World.cs" id="1_smgwo"]
+[ext_resource type="PackedScene" uid="uid://dwx5btqlsud4v" path="res://src/Scenes/Background.tscn" id="2_4ifn6"]
+[ext_resource type="PackedScene" uid="uid://chystnq3d2mwg" path="res://src/Scenes/Player.tscn" id="2_rathe"]
+[ext_resource type="Texture2D" uid="uid://clj6sxdyatgih" path="res://src/Images/floor.png" id="3_mgetk"]
+[ext_resource type="Texture2D" uid="uid://dwy70jmtbwixh" path="res://src/Images/spotligh-trsp.png" id="6_8bvfs"]
+[ext_resource type="Texture2D" uid="uid://c0oktleafx743" path="res://src/Images/spotlight-blue.png" id="6_urkl6"]
+[ext_resource type="Texture2D" uid="uid://c2yoxiqmwealh" path="res://src/Images/spotlight-lit.png" id="8_7h8cp"]
+[ext_resource type="PackedScene" uid="uid://dcr8v6puobv2g" path="res://src/Scenes/PipeSpawner.tscn" id="8_y3mvg"]
+[ext_resource type="PackedScene" uid="uid://26taaxe6v4px" path="res://src/Scenes/Hud.tscn" id="9_maix2"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ywki3"]
 
@@ -65,6 +65,7 @@ position = Vector2(64, 276)
 scale = Vector2(12.8, 1)
 
 [node name="Player" parent="." instance=ExtResource("2_rathe")]
+visible = false
 position = Vector2(115, 224)
 scale = Vector2(2, 2)
 
@@ -107,6 +108,7 @@ texture = ExtResource("8_7h8cp")
 [node name="Button" type="Button" parent="."]
 offset_right = 360.0
 offset_bottom = 640.0
+focus_mode = 0
 action_mode = 0
 flat = true
 

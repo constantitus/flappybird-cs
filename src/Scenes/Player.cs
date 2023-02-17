@@ -4,21 +4,24 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-	#region Constants and Vars
-
 	private AnimatedSprite2D _birdSprite;
 	
-	public event Action Ded;
+	public static event Action Ded;
 	public static bool DedPlayer;
 
-	#endregion
 	public override void _Ready()
 	{
 
 		_birdSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-		_birdSprite.Animation = "default";
-		_birdSprite.Play();
-
+		Main.ResumeGame += () => 
+		{
+		if (!World.StartedPlaying)
+			_birdSprite.Play("default");
+		};
+		Hud.PauseGame += () => 
+		{
+			_birdSprite.Pause();
+		};
 		_birdSprite.AnimationFinished += () =>
 		{
 			if (_birdSprite.Animation == "default")
@@ -29,9 +32,15 @@ public partial class Player : CharacterBody2D
 					_birdSprite.Pause();
 			}
 		};
-		Ded += () => _birdSprite.Animation = "dead";
+		Ded += () =>
+			_birdSprite.Animation = "dead";
+		Main.StartGame += () =>
+			_birdSprite.Animation = "default";
+		Main.ResumeGame += () =>
+			Visible = true;
 	}
 
+	private bool _collidingWithFloor;
 	public void CheckCollision()
 	{
 		for (int i = 0; i < GetSlideCollisionCount(); i++)
@@ -41,10 +50,15 @@ public partial class Player : CharacterBody2D
 			{
 				DedPlayer = true;
 				Ded?.Invoke();
+				_fallSpeed = 0;
+				_collidingWithFloor = false;
 			}
+			else
+				_collidingWithFloor = true;
 		}
 	}
 
+	
 	void _movement(double delta)
 	{
 		Vector2 velocity = Velocity;
@@ -56,10 +70,10 @@ public partial class Player : CharacterBody2D
 		// Handle Flap
 		if (Input.IsActionJustPressed("Jump"))
 		{
-			if (!IsOnFloor())
-				velocity.Y = -600f;
-			else
+			if (IsOnFloor() && _collidingWithFloor)
 				velocity.Y = -900f;
+			else
+				velocity.Y = -600f;
 			_birdSprite.Play();
 			_birdSprite.SetFrameAndProgress(0, 0);
 		}
@@ -69,6 +83,7 @@ public partial class Player : CharacterBody2D
 			velocity.Y = 700;
 
 		Velocity = velocity;
+
 		MoveAndSlide();
 		CheckCollision();
 	}
@@ -81,7 +96,10 @@ public partial class Player : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{ 
 		if (!DedPlayer)
-			{ if (World.StartedPlaying) _movement(delta); }
+			{
+				if (World.StartedPlaying && !Main.IsPaused)
+					_movement(delta);
+			}
 		else if (!World.PlayerOffScreen)
 			_dying();
 	}

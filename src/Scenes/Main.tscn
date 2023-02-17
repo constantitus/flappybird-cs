@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=3 uid="uid://d7r6rnncj58k"]
+
+[ext_resource type="Script" path="res://src/Scenes/Main.cs" id="1_lxef3"]
+[ext_resource type="PackedScene" uid="uid://csib0vxrkwoyx" path="res://src/Scenes/World.tscn" id="1_ykjxp"]
+[ext_resource type="Texture2D" uid="uid://ceuwhr1bap5dq" path="res://src/Images/resume.png" id="3_i1u3k"]
+[ext_resource type="FontFile" uid="uid://dql7s5i0r8u7a" path="res://src/moreperfectdos.ttf" id="4_oyo45"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n7k5w"]
+line_spacing = 2.0
+font = ExtResource("4_oyo45")
+font_size = 32
+outline_color = Color(0, 0, 0, 0)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_lxef3")
+
+[node name="World" parent="." instance=ExtResource("1_ykjxp")]
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="Label" type="Label" parent="PauseMenu"]
+offset_left = 30.0
+offset_top = 120.0
+offset_right = 330.0
+offset_bottom = 240.0
+text = "Flappy Bird"
+label_settings = SubResource("LabelSettings_n7k5w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pause" type="Control" parent="PauseMenu"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 360.0
+offset_bottom = 640.0
+
+[node name="MenuBackground" type="ColorRect" parent="PauseMenu/Pause"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 120.0
+offset_right = 330.0
+offset_bottom = 520.0
+color = Color(1, 1, 1, 0.372549)
+
+[node name="Resume" type="Button" parent="PauseMenu/Pause"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -45.0
+offset_right = -28.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+focus_mode = 0
+action_mode = 0
+icon = ExtResource("3_i1u3k")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="ResumeLabel" type="Label" parent="PauseMenu/Pause/Resume"]
+layout_mode = 0
+offset_left = -7.25
+offset_top = 18.25
+offset_right = 160.75
+offset_bottom = 101.25
+scale = Vector2(0.25, 0.25)
+text = "Play"
+label_settings = SubResource("LabelSettings_n7k5w")
+horizontal_alignment = 1
+vertical_alignment = 1
