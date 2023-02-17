@@ -14,8 +14,6 @@ public partial class PipeSpawner : Node2D
         _timer.Timeout += SpawnPipe;
 
         Randomize();
-
-
     }
     void SpawnPipe()
     {
@@ -29,10 +27,9 @@ public partial class PipeSpawner : Node2D
     {
         if (Array.IndexOf(World.SpeedStages, World.Score) != -1)
         {
-            int i = Array.IndexOf(World.SpeedStages, World.Score);
+            var i = Array.IndexOf(World.SpeedStages, World.Score);
             World.SpeedModifier = World.SpeedChart[i];
             _timer.WaitTime = World.TimeRatio[0] - (World.TimeRatio[1] * World.SpeedModifier);
         }
-        Print("T: ", _timer.WaitTime, " , SM: ", World.SpeedModifier);
     }
 }

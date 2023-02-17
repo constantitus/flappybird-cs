@@ -78,7 +78,7 @@ position = Vector2(180, -40)
 shape = SubResource("RectangleShape2D_wuf1n")
 
 [node name="bottom" type="CollisionShape2D" parent="no"]
-position = Vector2(180, 605)
+position = Vector2(180, 596)
 shape = SubResource("RectangleShape2D_wuf1n")
 
 [node name="Lights" type="Node2D" parent="."]

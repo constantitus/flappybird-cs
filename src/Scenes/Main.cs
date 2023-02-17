@@ -15,6 +15,28 @@ public partial class Main : Node
 
     private PackedScene _world;
     private World World;
+
+	private string[] _phrasesDed = {
+		"MAHIRO MY WIFE",
+		"FLOPPY DIKS",
+		"TACTICAL CAMEL",
+		"THE HATMAN IS\nWATCHING",
+		"MAHIRO PLEASE\nCONCEIVE MY CHILD",
+		"PAPA POLE",
+		"GEORGE WASHINGTON\nINVENTED LIGHTNING",
+		"OUT OF TOUCH",
+		"im tired",
+		"WHY CODING HARD",
+		"LOWRES",
+		"WINDOWS IS TRASH",
+		"TIM CUCKOLD",
+		"LIDL IN OHIO",
+		"volkswagen",
+		"SELAMAT PAGI",
+		"JESSE WE GOTTA\nGET 100 POINTS",
+		"WALTER BLACK\nBREAKING IN",
+		"GOT LOTION ON\nMY DICK RN"
+	};
     public override void _Ready()
     {
         _resumeButton = GetNode<Button>("PauseMenu/Pause/Resume");
@@ -41,15 +63,16 @@ public partial class Main : Node
         {
             _pauseMenu.Visible = true;
             _resumeLabel.Text = "Resume";
-            _gameLabel.Text = "Floppy Diks";
+            _gameLabel.Text = "~ PAUSED ~";
         };
-
+		Randomize();
+		var _phrasesLength = _phrasesDed.Length - 1;
         Player.Ded += () =>
             {
                 Hud.PauseButton.Visible = false;
                 _pauseMenu.Visible = true;
                 _resumeLabel.Text = "Retry";
-                _gameLabel.Text = "MAHIRO MY WIFE";
+                _gameLabel.Text = _phrasesDed[RandRange(0, _phrasesLength)];
             };
     }
 }

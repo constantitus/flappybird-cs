@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://26taaxe6v4px"]
+[gd_scene load_steps=7 format=3 uid="uid://26taaxe6v4px"]
 
 [ext_resource type="Script" path="res://src/Scenes/Hud.cs" id="1_n7o83"]
 [ext_resource type="FontFile" uid="uid://dql7s5i0r8u7a" path="res://src/moreperfectdos.ttf" id="2_6eo74"]
 [ext_resource type="Texture2D" uid="uid://rihoqv1lpjtf" path="res://src/Images/pause.png" id="3_34qcq"]
+[ext_resource type="AudioStream" uid="uid://d2ltlwndaqvfk" path="res://src/Audio/Coin.wav" id="4_keibe"]
+[ext_resource type="AudioStream" uid="uid://dos1wvkbp67vb" path="res://src/Audio/Redcoin.wav" id="5_0f0kh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8htld"]
 font = ExtResource("2_6eo74")
@@ -38,3 +40,11 @@ shortcut_in_tooltip = false
 icon = ExtResource("3_34qcq")
 flat = true
 icon_alignment = 1
+
+[node name="Coin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_keibe")
+volume_db = -10.0
+
+[node name="RedCoin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_0f0kh")
+volume_db = -10.0

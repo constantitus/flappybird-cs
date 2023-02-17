@@ -2,5 +2,9 @@
 .godot/
 /
 export-templates/
-data_flappybird_x86_64/
+export-templates/*
+export-linux/
+export-linux/*
+export-windows/
+export-windows/*
 .vscode/

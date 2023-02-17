@@ -5,14 +5,17 @@ using System;
 public partial class Player : CharacterBody2D
 {
     private AnimatedSprite2D _birdSprite;
+	private AudioStreamPlayer _soundDead;
 
     public static event Action Ded;
     public static bool DedPlayer;
+    private float _dyingFallSpeed = 1;
 
     public override void _Ready()
     {
-
         _birdSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		_soundDead = GetNode<AudioStreamPlayer>("Boup");
+
         Main.ResumeGame += () =>
         {
             if (!World.StartedPlaying)
@@ -33,7 +36,10 @@ public partial class Player : CharacterBody2D
             }
         };
         Ded += () =>
+		{
             _birdSprite.Animation = "dead";
+			_soundDead.Play();
+		};
         Main.StartGame += () =>
             _birdSprite.Animation = "default";
         Main.ResumeGame += () =>
@@ -50,7 +56,7 @@ public partial class Player : CharacterBody2D
             {
                 DedPlayer = true;
                 Ded?.Invoke();
-                _fallSpeed = 0;
+                _dyingFallSpeed = 0;
                 _collidingWithFloor = false;
             }
             else
@@ -87,11 +93,10 @@ public partial class Player : CharacterBody2D
         MoveAndSlide();
         CheckCollision();
     }
-    private float _fallSpeed = 1;
     void _dying()
     {
-        _fallSpeed = Mathf.Lerp(_fallSpeed, 100, 0.01f);
-        Position += new Vector2(0, _fallSpeed);
+        _dyingFallSpeed = Mathf.Lerp(_dyingFallSpeed, 100, 0.01f);
+        Position += new Vector2(0, _dyingFallSpeed);
     }
     public override void _PhysicsProcess(double delta)
     {

@@ -10,16 +10,19 @@ config_version=5
 
 [application]
 
-config/name="flappybird"
+config/name="FlappyBird"
 run/main_scene="res://src/Scenes/Main.tscn"
-config/features=PackedStringArray("4.0", "C#", "GL Compatibility")
+config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [display]
 
 window/size/viewport_width=360
 window/size/viewport_height=640
-window/size/resizable=false
+window/size/initial_position_type=0
+window/energy_saving/keep_screen_on=false
+window/handheld/orientation=1
+window/stretch/mode="viewport"
 
 [dotnet]
 
@@ -345,4 +348,5 @@ pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
+renderer/rendering_method="gl_compatibility"
 textures/canvas_textures/default_texture_filter=0
