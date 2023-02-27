@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://26taaxe6v4px"]
+[gd_scene load_steps=7 format=3 uid="uid://26taaxe6v4px"]
 
+[ext_resource type="Script" path="res://src/Scenes/Hud.cs" id="1_7s7t4"]
 [ext_resource type="FontFile" uid="uid://dql7s5i0r8u7a" path="res://src/moreperfectdos.ttf" id="2_6eo74"]
 [ext_resource type="Texture2D" uid="uid://rihoqv1lpjtf" path="res://src/Images/pause.png" id="3_34qcq"]
 [ext_resource type="AudioStream" uid="uid://d2ltlwndaqvfk" path="res://src/Audio/Coin.wav" id="4_keibe"]
@@ -15,6 +16,7 @@ shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(0, 0)
 
 [node name="Hud" type="CanvasLayer"]
+script = ExtResource("1_7s7t4")
 
 [node name="Score" type="Label" parent="."]
 offset_right = 360.0
@@ -25,6 +27,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Pause" type="Button" parent="."]
+visible = false
 offset_left = 303.0
 offset_top = 1.0
 offset_right = 331.0

@@ -72,7 +72,7 @@ public partial class Main : Node
                 Hud.PauseButton.Visible = false;
                 _pauseMenu.Visible = true;
                 _resumeLabel.Text = "Retry";
-                //_gameLabel.Text = _phrasesDed[RandRange(0, _phrasesLength)];
+                _gameLabel.Text = _phrasesDed[RandRange(0, _phrasesLength)];
             };
     }
 }
