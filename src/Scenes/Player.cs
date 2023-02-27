@@ -52,7 +52,7 @@ public partial class Player : CharacterBody2D
         for (int i = 0; i < GetSlideCollisionCount(); i++)
         {
             KinematicCollision2D collision = GetSlideCollision(i);
-            if ((collision.GetCollider() as Node).Name != "no")
+            if ((collision.GetCollider() as Node).Name != "no" && DedPlayer == false)
             {
                 DedPlayer = true;
                 Ded?.Invoke();
