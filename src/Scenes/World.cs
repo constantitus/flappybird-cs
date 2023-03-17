@@ -90,8 +90,9 @@ public partial class World : Node2D
         Lights.Position = Player.Position;
         if (!Player.DedPlayer && !Main.IsPaused)
         {
-            Floor.Position -= new Vector2((World.SpeedRatio[0] + World.SpeedRatio[1] * World.SpeedModifier) * (float)delta, 0);
-            _bgScrollOffset.X -= (World.SpeedRatio[0] + World.SpeedRatio[1] * World.SpeedModifier) * 0.5f * (float)delta;
+            Floor.Position -= new Vector2((SpeedRatio[0] + SpeedRatio[1] * SpeedModifier) * (float)delta, 0);
+            _bgScrollOffset.X -= (SpeedRatio[0] + SpeedRatio[1] * SpeedModifier) * 0.5f * (float)delta;
+
         }
         if (Input.IsActionJustPressed("Jump") && !Main.IsPaused && !StartedPlaying)
             _startPlaying?.Invoke();

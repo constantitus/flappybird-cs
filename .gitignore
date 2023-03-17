@@ -5,6 +5,8 @@ export-templates/
 export-linux/
 export-windows/
 export-android/
+asset-templates/
+script-templates/
 .mono/
 android/
 .vscode/

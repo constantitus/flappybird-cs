@@ -69,7 +69,7 @@ public partial class Main : Node
 		var _phrasesLength = _phrasesDed.Length - 1;
         Player.Ded += () =>
             {
-                Hud.PauseButton.Visible = false;
+                Hud.PauseButton.Visible = false;    // why is this here ?
                 _pauseMenu.Visible = true;
                 _resumeLabel.Text = "Retry";
                 _gameLabel.Text = _phrasesDed[RandRange(0, _phrasesLength)];

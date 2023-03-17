@@ -9,7 +9,7 @@ public partial class Player : CharacterBody2D
 
     public static event Action Ded;
     public static bool DedPlayer;
-    private float _dyingFallSpeed = 1;
+    private float _dyingFallSpeed = 0;
 
     public override void _Ready()
     {
@@ -42,18 +42,22 @@ public partial class Player : CharacterBody2D
 		};
         Main.StartGame += () =>
             _birdSprite.Animation = "default";
+        // Main.ResumeGame twice ? am i retarded ? okkkkkkkkkkkkkkkkkkkkkkk
         Main.ResumeGame += () =>
             Visible = true;
     }
 
     private bool _collidingWithFloor;
+
     public void CheckCollision()
     {
         for (int i = 0; i < GetSlideCollisionCount(); i++)
         {
-            KinematicCollision2D collision = GetSlideCollision(i);
+            KinematicCollision2D collision = GetSlideCollision(i); 
             if ((collision.GetCollider() as Node).Name != "no")
             {
+                // kill player
+                
                 DedPlayer = true;
                 Ded?.Invoke();
                 _dyingFallSpeed = 0;
@@ -63,7 +67,6 @@ public partial class Player : CharacterBody2D
                 _collidingWithFloor = true;
         }
     }
-
 
     void _movement(double delta)
     {

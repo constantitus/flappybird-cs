@@ -16,12 +16,12 @@ public partial class Pipes : Node2D
         _visible.ScreenExited += () =>
             QueueFree();
         Main.StartGame += () =>
-            RefreshScore?.Invoke();
+            RefreshScore?.Invoke(); // ??? refresh the score when the game starts
         _scoreArea = GetNode<Area2D>("ScoreArea");
         _scoreArea.BodyEntered += (Node2D) =>
         {
             World.Score++;
-            RefreshScore?.Invoke();
+            RefreshScore?.Invoke(); // i see...         still retarded
         };
     }
     public override void _Process(double delta)
